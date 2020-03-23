@@ -9,9 +9,9 @@ public interface ProductoService {
 
     Long store (ProductoDTO productoDTO);
 
-    List<Producto> listarProductos();
+    List<ProductoDTO> consultarProductos();
 
-    String listName (ProductoDTO productoDTO);
+    List<ProductoDTO> findByName(String nombre);
 
-    void  eliminar(Long id);
+    String  eliminar(Long productoId);
 }
