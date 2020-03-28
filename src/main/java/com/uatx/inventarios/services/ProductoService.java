@@ -14,4 +14,6 @@ public interface ProductoService {
     List<ProductoDTO> findByName(String nombre);
 
     String  eliminar(Long productoId);
+
+    List<ProductoDTO> findProdWithImage();
 }

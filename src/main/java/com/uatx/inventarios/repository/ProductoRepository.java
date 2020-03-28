@@ -11,5 +11,10 @@ import java.util.List;
     public interface ProductoRepository extends JpaRepository<Producto, Long>{
         @Query ("SELECT p FROM Producto p where lower(p.nombre) like lower(CONCAT('%',:nombre,'%'))")
         List<Producto> findProductosNombreContaining(String nombre);
-    }
+
+    @Query ("SELECT p FROM Producto p JOIN FETCH p.imagen")
+    List<Producto> findProductosFetchImagen();
+
+
+}
 
