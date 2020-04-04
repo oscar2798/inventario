@@ -1,35 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Nuevo Producto</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <script src="/js/nuevo-producto.js"></script>
+    <!--<script src="/js/nuevo-producto.js"></script> -->
     <script src="/libs/jquery/jquery-3.4.1.min.js"></script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 <body>
 
-
 <div class="container">
+    <br>
+    <br>
     <div class="row ">
         <div class="col-12 justify-content-center align-middle">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h2>Nuevo producto</h2>
-                    <form>
+                    <form th:action="@{/productos/guardar}" th:object=${producto} method="POST">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" aria-describedby="Nombre">
+                            <input th:field="*{nombre}" type="text" class="form-control" id="nombre" aria-describedby="Nombre">
                         </div>
                         <div class="form-group">
                             <label for="precio">Precio</label>
-                            <input type="text" class="form-control" id="precio">
+                            <input th:field="*{precio}" type="text" class="form-control" id="precio">
                         </div>
-                        <div class="input-group mb-3">
+                        <!-- <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="imagenDesc">Subir</span>
                             </div>
@@ -38,12 +37,11 @@
                                 <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
                             </div>
                         </div>
-                        <button type="button" class="guardar-btn">Guardar</button>
+                        <div id="img-preview"></div> -->
                         <div class="container" style="width:100%;text-align: right">
-                            <button type="button" id="guardar-btn" class="btn btn-outline-secondary">Guardar</button>
+                            <input type="submit" id="guardar-btn" class="btn btn-primary btn-lg" value="Guardar"/>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -51,8 +49,6 @@
     <div class="alert alert-success align-self-end" id="alert">
     </div>
 </div>
-
-
 
 
 

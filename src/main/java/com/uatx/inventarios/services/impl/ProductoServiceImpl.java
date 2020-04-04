@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
@@ -35,12 +36,12 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public Long store(ProductoDTO productoDTO) {
         Producto producto = modelMapper.map(productoDTO,Producto.class);
-        producto.setStock(0D);
+        producto.setStock((int) 0D);
         producto.setFechaAlta(new Date());
-        Imagen imagen = modelMapper.map(productoDTO.getImagen(),Imagen.class);
+        //Imagen imagen = modelMapper.map(productoDTO.getImagen(),Imagen.class);
 
-        imagenRepository.save(imagen);
-        producto.setImagen(imagen);
+       // imagenRepository.save(imagen);
+       // producto.setImagen(imagen);
         productoRepository.save(producto);
         return producto.getId();
     }
@@ -64,6 +65,11 @@ public class ProductoServiceImpl implements ProductoService {
 
     }
 
+    @Override
+    public Optional<Producto>listarId(Long productoId){
+        return productoRepository.findById(productoId);
+    }
+
 
     @Override
     public String eliminar(Long productoId) {
@@ -79,19 +85,18 @@ public class ProductoServiceImpl implements ProductoService {
             LOGGER.error("Exception: ", e);
             if(e instanceof BusinessException){
                 return e.getMessage();
-            }else{
-                return "Error no controlado: "+ e.getMessage();
+            } else {
+                return "Error no controlado: " + e.getMessage();
             }
 
         }
     }
 
     @Override
-    public List<ProductoDTO> findProdWithImage(){
+    public List<ProductoDTO> findProdWithImage() {
         List<Producto> productos = productoRepository.findProductosFetchImagen();
-        List<ProductoDTO> productosDTO = trasnformToListDTO(productos);
-        return productosDTO;
-
+        List<ProductoDTO> produtosDTO = trasnformToListDTO(productos);
+        return produtosDTO;
     }
 
     /**

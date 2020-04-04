@@ -5,9 +5,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "imagenes")
-@SequenceGenerator(name = "imagen_seq")
+@SequenceGenerator(name="imagen_seq")
 public class Imagen {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "imagen_seq")
     private Long id;
@@ -15,7 +14,7 @@ public class Imagen {
     @Column(name = "nombre", length = 50)
     private String nombre;
 
-    @Column(name = "mime-type", length = 30)
+    @Column(name = "mime_type", length = 20)
     private String mimeType;
 
     @Column(name = "datos", length = 5_000_000)
@@ -34,12 +33,12 @@ public class Imagen {
         this.nombre = nombre;
     }
 
-    public String getMimetype() {
+    public String getMimeType() {
         return mimeType;
     }
 
-    public void setMimetype(String mimetype) {
-        this.mimeType = mimetype;
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
     }
 
     public String getDataBase64() {

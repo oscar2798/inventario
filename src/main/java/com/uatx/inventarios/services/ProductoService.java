@@ -4,6 +4,7 @@ import com.uatx.inventarios.dto.ProductoDTO;
 import com.uatx.inventarios.model.Producto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductoService {
 
@@ -13,7 +14,11 @@ public interface ProductoService {
 
     List<ProductoDTO> findByName(String nombre);
 
+    Optional<Producto> listarId(Long productoId);
+
+
     String  eliminar(Long productoId);
 
     List<ProductoDTO> findProdWithImage();
+
 }

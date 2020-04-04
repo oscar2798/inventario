@@ -4,24 +4,21 @@ import java.util.Date;
 
 public class ProductoDTO {
     private Long id;
-    private  String nombre;
+    private String nombre;
     private Date fechaAlta;
-    private Double stock;
+    private Integer stock;
     private Double precio;
     private ImagenDTO imagen;
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -34,11 +31,11 @@ public class ProductoDTO {
         this.fechaAlta = fechaAlta;
     }
 
-    public Double getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(Double stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 

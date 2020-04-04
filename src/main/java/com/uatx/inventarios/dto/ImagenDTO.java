@@ -7,7 +7,6 @@ public class ImagenDTO {
     private String mimeType;
     private String dataBase64;
 
-
     public Long getId() {
         return id;
     }
@@ -39,4 +38,5 @@ public class ImagenDTO {
     public void setDataBase64(String dataBase64) {
         this.dataBase64 = dataBase64;
     }
+
 }

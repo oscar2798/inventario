@@ -5,23 +5,23 @@ import java.util.Date;
 
 @Entity
 @Table(name = "productos")
-@SequenceGenerator(name="producto_seq")
+@SequenceGenerator(name = "producto_seq")
 public class Producto {
 
     //Generar ID
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "producto_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_seq")
     private Long id;
 
 
     @Column(name = "nombre", length = 50)
     private  String nombre;
 
-    @Column(name = "fecha-alta")
+    @Column(name = "fecha_alta")
     private Date fechaAlta;
 
     @Column(name = "stock")
-    private Double stock;
+    private Integer stock;
 
     @Column(name = "precio")
     private Double precio;
@@ -34,41 +34,27 @@ public class Producto {
         return id;
     }
 
+    public String getNombre() { return nombre; }
 
-    public String getNombre() {
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-
-        this.nombre = nombre;
-    }
-
-
-    public Date getFechaAlta() {
-        return fechaAlta;
-    }
+    public Date getFechaAlta() { return fechaAlta; }
 
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
-    public Double getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(Double stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
-    public Double getPrecio() {
-        return precio;
-    }
+    public Double getPrecio() { return precio; }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
+    public void setPrecio(Double precio) { this.precio = precio; }
 
     public Imagen getImagen() {
         return imagen;
@@ -76,14 +62,6 @@ public class Producto {
 
     public void setImagen(Imagen imagen) {
         this.imagen = imagen;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                '}';
     }
 
 }

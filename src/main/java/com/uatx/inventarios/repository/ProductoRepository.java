@@ -12,9 +12,8 @@ import java.util.List;
         @Query ("SELECT p FROM Producto p where lower(p.nombre) like lower(CONCAT('%',:nombre,'%'))")
         List<Producto> findProductosNombreContaining(String nombre);
 
-    @Query ("SELECT p FROM Producto p JOIN FETCH p.imagen")
-    List<Producto> findProductosFetchImagen();
-
+        @Query("SELECT p FROM Producto p JOIN FETCH p.imagen")
+        List<Producto> findProductosFetchImagen();
 
 }
 
