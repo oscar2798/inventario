@@ -14,8 +14,7 @@ public interface ProductoService {
 
     List<ProductoDTO> findByName(String nombre);
 
-    Optional<Producto> listarId(Long productoId);
-
+    Optional<Producto> editar(Long productoId);
 
     String  eliminar(Long productoId);
 

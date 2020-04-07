@@ -5,8 +5,8 @@
 
     <title>consultar producto</title>
 
-    <!-- <script src="/js/nuevo-producto.js"></script> -->
-    <script src="/libs/jquery/jquery-3.4.1.min.js"></script>
+    <!--<script src="static/js/nuevo-producto.js"></script>
+    <script src="static/libs/jquery/jquery-3.4.1.min.js"></script> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -31,10 +31,14 @@
             <td th:text="${producto.stock}"></td>
             <td th:text="${producto.precio}"></td>
             <td th:text="${producto.fechaAlta}"></td>
-            <td></td>
             <td>
-                <a th:href="@{/productos/listar/}+${producto.id}" class="btn btn-info"><i class="material-icons" style="color:white">edit</i></a>
-                <a class="btn btn-danger"><i class="material-icons" style="color:white">delete</i></a>
+                <a th:href="@{'/img/imagenes/producto1.jpg'}" id="imageButton">
+                    <img th:src="@{'/img/imagenes/producto1.jpg'}" width="40" height="50">
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/productos/editar/{id}(id=${producto.id})}" class="btn btn-info"><i class="material-icons" style="color:white">edit</i></a>
+                <a th:href="@{/productos/eliminar/{id}(id=${producto.id})}" class="btn btn-danger"><i class="material-icons" style="color:white">delete</i></a>
             </td>
         </tr>
         </tbody>

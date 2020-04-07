@@ -13,10 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
@@ -32,17 +30,17 @@ public class ProductoServiceImpl implements ProductoService {
     private ModelMapper modelMapper;
 
 
-
-    @Override
     public Long store(ProductoDTO productoDTO) {
-        Producto producto = modelMapper.map(productoDTO,Producto.class);
+        Producto producto = modelMapper.map(productoDTO, Producto.class);
         producto.setStock((int) 0D);
         producto.setFechaAlta(new Date());
-        //Imagen imagen = modelMapper.map(productoDTO.getImagen(),Imagen.class);
+        /* Imagen imagen = modelMapper.map(productoDTO.getImagen(), Imagen.class);
+        imagenRepository.save(imagen);
+        producto.setImagen(imagen);
 
-       // imagenRepository.save(imagen);
-       // producto.setImagen(imagen);
+         */
         productoRepository.save(producto);
+
         return producto.getId();
     }
 
@@ -52,23 +50,14 @@ public class ProductoServiceImpl implements ProductoService {
 
     }
 
-    /**
-     * Busca todos los productos que en el nombre contengar el valor del parametro nombre
-     * ej. nombre = refres, resultado: refresco de cola, refresco de naranja
-     * @param  nombre
-     * @return productos cuyo nombre coincida con el parametro
-     */
+
 
     @Override
-    public List<ProductoDTO> findByName(String nombre){
-        return trasnformToListDTO(productoRepository.findProductosNombreContaining(nombre));
-
+    public Optional<Producto> editar(Long  productoId){
+        Optional<Producto> producto = productoRepository.findById(productoId);
+        return producto;
     }
 
-    @Override
-    public Optional<Producto>listarId(Long productoId){
-        return productoRepository.findById(productoId);
-    }
 
 
     @Override
@@ -99,6 +88,20 @@ public class ProductoServiceImpl implements ProductoService {
         return produtosDTO;
     }
 
+
+    /**
+     * Busca todos los productos que en el nombre contengar el valor del parametro nombre
+     * ej. nombre = refres, resultado: refresco de cola, refresco de naranja
+     * @param  nombre
+     * @return productos cuyo nombre coincida con el parametro
+     */
+
+    @Override
+    public List<ProductoDTO> findByName(String nombre){
+        return trasnformToListDTO(productoRepository.findProductosNombreContaining(nombre));
+
+    }
+
     /**
      * Metodo de utilidad para pasar los valores de una lista de objetos del tipo
      * Producto a otra lista del tipo ProductoDTO
@@ -114,4 +117,5 @@ public class ProductoServiceImpl implements ProductoService {
         }
         return productoDTOS;
     }
+
 }

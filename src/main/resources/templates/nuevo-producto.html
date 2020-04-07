@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Nuevo Producto</title>
 
-    <!--<script src="/js/nuevo-producto.js"></script> -->
-    <script src="/libs/jquery/jquery-3.4.1.min.js"></script>
+    <!--<script src="static/js/nuevo-producto.js"></script>
+    <script src="static/libs/jquery/jquery-3.4.1.min.js"></script> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
@@ -22,11 +22,11 @@
                     <form th:action="@{/productos/guardar}" th:object=${producto} method="POST">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input th:field="*{nombre}" type="text" class="form-control" id="nombre" aria-describedby="Nombre">
+                            <input th:field="*{nombre}"  type="text" class="form-control" id="nombre" aria-describedby="Nombre">
                         </div>
                         <div class="form-group">
                             <label for="precio">Precio</label>
-                            <input th:field="*{precio}" type="text" class="form-control" id="precio">
+                            <input th:field="*{precio}"  type="text" class="form-control" id="precio">
                         </div>
                         <!-- <div class="input-group mb-3">
                             <div class="input-group-prepend">
