@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,13 +17,17 @@ public class ProductosController {
     @Autowired
     private ProductoService productoService;
 
-    // Nuevo
-
-    @GetMapping("/page/nuevo")
+    // Nuevo-producto
+    @GetMapping("/page/nuevo-producto")
     public String agregar(Model model){
         model.addAttribute("producto",new ProductoDTO());
         return  "nuevo-producto";
     }
+
+   /* @GetMapping("/page/nuevo-producto" )
+    public String altaProductos(){
+        return "nuevo-producto";
+    }  */
 
 
 
@@ -38,12 +40,24 @@ public class ProductosController {
 
     }
 
+
+    /*@GetMapping("/page/productos")
+    public String consultarProd(){
+        return "consulta-producto";
+    } */
+
+    @GetMapping("/find/by-name")
+    @ResponseBody
+    public List<ProductoDTO> findByName(@RequestParam String nombre) {
+        return productoService.findByName(nombre);
+    }
+
+
     // guardar
     @PostMapping("/guardar")
-    public  String save(ProductoDTO productoDTO, Model model){
-        productoService.store(productoDTO);
-        return "redirect:/productos/page/productos";
-
+    @ResponseBody
+    public Long save(@RequestBody ProductoDTO productoDTO){
+          return productoService.store(productoDTO);
     }
 
     // editar
@@ -62,51 +76,14 @@ public class ProductosController {
     }
 
 
-   /* @PostMapping("/guardar")
-    @ResponseBody
-    public Long guardarProducto(@RequestBody ProductoDTO productoDTO){
-        return productoService.store(productoDTO);
-    }
-
-
-    public Long guardarProducto(@RequestBody ProductoDTO productoDTO) {
-        return productoService.store(productoDTO);
-    } */
-
-
-
     /*@GetMapping("/all")
     @ResponseBody
     public List<ProductoDTO> consultarProductos() {
         return productoService.consultarProductos();
     }
 
-
-
-    @GetMapping("/find/by-name")
-    @ResponseBody
-    public List<ProductoDTO> findByName(@RequestParam String nombre) {
-
-        return productoService.findByName(nombre);
-    }
-
    */
 
-    /*@DeleteMapping("/eliminar/{productoId}")
-    @ResponseBody
-    public String findByName (@PathVariable Long productoId){
-         return productoService.eliminar(productoId);
 
-    } */
-
-   /* @GetMapping("/page/nuevo-producto" )
-    public String altaProductos(){
-        return "nuevo-producto";
-    }
-
-    @GetMapping("/page/productos")
-    public String consultarProd(){
-        return "consulta-producto";
-    } */
 
 }

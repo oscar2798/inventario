@@ -12,7 +12,9 @@ public class InventariosApplication {
 	private static final Logger LOGGER = LoggerFactory.getLogger(InventariosApplication.class);
 
 	public static void main(String[] args){
-		LOGGER.debug("HOla desde el logger");
+		Integer x = 10;
+		Integer y = 20;
+		LOGGER.debug("HOla desde el logger {} {}",x,y);
 		SpringApplication.run(InventariosApplication.class, args);
 	}
 

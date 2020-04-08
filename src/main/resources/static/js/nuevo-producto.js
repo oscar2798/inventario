@@ -23,7 +23,7 @@ $(document).ready(function () {
             'data': JSON.stringify(productoDTO),
             'dataType': 'json',
             'success': function (id) {
-                console.log("Producto guardado ", id);
+                console.log("Prodcuto guardado ", id);
                 $('#alert').show(500);
                 setTimeout(function () {
                     $('#alert').hide(500);

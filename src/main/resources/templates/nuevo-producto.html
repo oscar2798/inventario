@@ -2,11 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/libs/bootstrap-4.4.1/css/bootstrap.min.css">
+    <script src="/libs/jquery/jquery-3.4.1.min.js"></script>
+    <script src="/libs/popper/popper.min.js"></script>
+    <script src="/libs/bootstrap-4.4.1/js/bootstrap.bundle.in.js"></script>
+
+    <script src="/js/nuevo-producto.js"></script>
     <title>Nuevo Producto</title>
 
-    <!--<script src="static/js/nuevo-producto.js"></script>
-    <script src="static/libs/jquery/jquery-3.4.1.min.js"></script> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 <body>
@@ -19,41 +23,39 @@
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h2>Nuevo producto</h2>
-                    <form th:action="@{/productos/guardar}" th:object=${producto} method="POST">
+
+                    <form th:object=${producto}>
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input th:field="*{nombre}"  type="text" class="form-control" id="nombre" aria-describedby="Nombre">
+                            <input th:field="*{nombre}" type="text" class="form-control" id="nombre" aria-describedby="Nombre">
                         </div>
                         <div class="form-group">
                             <label for="precio">Precio</label>
-                            <input th:field="*{precio}"  type="text" class="form-control" id="precio">
+                            <input th:field="*{precio}"type="text" class="form-control" id="precio">
                         </div>
-                        <!-- <div class="input-group mb-3">
+                        <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="imagenDesc">Subir</span>
                             </div>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="imagen" aria-describedby="imagenDesc">
+                                <input th:field="*{imagen}" type="file" class="custom-file-input" id="imagen" aria-describedby="imagenDesc">
                                 <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
                             </div>
                         </div>
-                        <div id="img-preview"></div> -->
+                        <div id="img-preview"></div>
                         <div class="container" style="width:100%;text-align: right">
-                            <input type="submit" id="guardar-btn" class="btn btn-primary btn-lg" value="Guardar"/>
+                            <button type="button" id="guardar-btn" class="btn btn-primary btn-lg">Guardar</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
     <div class="alert alert-success align-self-end" id="alert">
+        Producto guardado exitosamente
     </div>
 </div>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
 </html>

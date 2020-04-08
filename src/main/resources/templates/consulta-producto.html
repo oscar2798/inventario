@@ -2,13 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/libs/bootstrap-4.4.1/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="/libs/popper/popper.min.js"></script>
+    <script src="/libs/jquery/jquery-3.4.1.min.js"></script>
+    <script src="/libs/bootstrap-4.4.1/js/bootstrap.bundle.in.js"></script>
+
+    <script src="/js/nuevo-producto.js"></script>
 
     <title>consultar producto</title>
 
-    <!--<script src="static/js/nuevo-producto.js"></script>
-    <script src="static/libs/jquery/jquery-3.4.1.min.js"></script> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body>
@@ -32,9 +36,7 @@
             <td th:text="${producto.precio}"></td>
             <td th:text="${producto.fechaAlta}"></td>
             <td>
-                <a th:href="@{'/img/imagenes/producto1.jpg'}" id="imageButton">
-                    <img th:src="@{'/img/imagenes/producto1.jpg'}" width="40" height="50">
-                </a>
+                <img th:src="@{'data:'+imagen.type+';base64,'+imagen.base64String+''+${producto.imagen}}">
             </td>
             <td>
                 <a th:href="@{/productos/editar/{id}(id=${producto.id})}" class="btn btn-info"><i class="material-icons" style="color:white">edit</i></a>
@@ -44,11 +46,9 @@
         </tbody>
     </table>
     <div class="container" style="width:100%;text-align: right">
-        <a th:href="@{/productos/page/nuevo}" class="btn btn-outline-secondary">Nuevo producto</a>
+        <a th:href="@{/productos/page/nuevo-producto}" class="btn btn-outline-secondary">Nuevo producto</a>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

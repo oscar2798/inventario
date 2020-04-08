@@ -16,7 +16,7 @@ public interface ProductoService {
 
     Optional<Producto> editar(Long productoId);
 
-    String  eliminar(Long productoId);
+    String eliminar(Long productoId);
 
     List<ProductoDTO> findProdWithImage();
 

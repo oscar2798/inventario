@@ -29,16 +29,15 @@ public class ProductoServiceImpl implements ProductoService {
     @Autowired
     private ModelMapper modelMapper;
 
-
+    @Override
     public Long store(ProductoDTO productoDTO) {
         Producto producto = modelMapper.map(productoDTO, Producto.class);
         producto.setStock((int) 0D);
         producto.setFechaAlta(new Date());
-        /* Imagen imagen = modelMapper.map(productoDTO.getImagen(), Imagen.class);
+        Imagen imagen = modelMapper.map(productoDTO.getImagen(),Imagen.class);
         imagenRepository.save(imagen);
         producto.setImagen(imagen);
 
-         */
         productoRepository.save(producto);
 
         return producto.getId();
