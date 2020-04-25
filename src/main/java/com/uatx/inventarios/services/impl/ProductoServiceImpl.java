@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
@@ -30,12 +31,17 @@ public class ProductoServiceImpl implements ProductoService {
     private ModelMapper modelMapper;
 
     @Override
+    @Transactional
     public Long store(ProductoDTO productoDTO) {
         Producto producto = modelMapper.map(productoDTO, Producto.class);
         producto.setStock((int) 0D);
         producto.setFechaAlta(new Date());
         Imagen imagen = modelMapper.map(productoDTO.getImagen(),Imagen.class);
         imagenRepository.save(imagen);
+        if (imagen.getDataBase64().length() > 100){
+            throw  new BusinessException("No es posible guardar una imagen grande");
+
+        }
         producto.setImagen(imagen);
 
         productoRepository.save(producto);
@@ -66,7 +72,9 @@ public class ProductoServiceImpl implements ProductoService {
             if (producto == null) {
                 throw new BusinessException("No existe un producto para el id " + productoId);
             }
+            Imagen imagen = producto.getImagen();
             productoRepository.delete(producto);
+            imagenRepository.delete(imagen);
             return "Producto eliminado exitosamente";
         } catch (Exception e) {
             LOGGER.error("Error al eliminar producto con id {}", productoId);

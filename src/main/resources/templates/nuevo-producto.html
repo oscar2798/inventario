@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,21 +24,21 @@
                 <div class="container">
                     <h2>Nuevo producto</h2>
 
-                    <form th:object=${producto}>
+                    <form>
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input th:field="*{nombre}" type="text" class="form-control" id="nombre" aria-describedby="Nombre">
+                            <input type="text" class="form-control" id="nombre" aria-describedby="Nombre">
                         </div>
                         <div class="form-group">
                             <label for="precio">Precio</label>
-                            <input th:field="*{precio}"type="text" class="form-control" id="precio">
+                            <input type="text" class="form-control" id="precio">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="imagenDesc">Subir</span>
                             </div>
                             <div class="custom-file">
-                                <input th:field="*{imagen}" type="file" class="custom-file-input" id="imagen" aria-describedby="imagenDesc">
+                                <input type="file" class="custom-file-input" id="imagen" aria-describedby="imagenDesc">
                                 <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
                             </div>
                         </div>

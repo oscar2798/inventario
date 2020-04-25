@@ -50,6 +50,8 @@ $(document).ready(function () {
                 //convert a base 64
                 var binaryData = e.target.result;
                 imagen.base64String = window.btoa(binaryData);
+                console.log(imagen.base64String);
+                console.log(window.btoa(imagen.base64String));
                 $('#img-preview').empty();
                 $('#img-preview').append('<img width="250px" src="data:'+imagen.type+';base64,'+imagen.base64String+'">');
             };

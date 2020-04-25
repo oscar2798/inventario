@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/libs/bootstrap-4.4.1/css/bootstrap.min.css">
@@ -10,6 +10,8 @@
     <script src="/libs/bootstrap-4.4.1/js/bootstrap.bundle.in.js"></script>
 
     <script src="/js/nuevo-producto.js"></script>
+    <script src="/js/consulta-productos.js"></script>
+
 
     <title>consultar producto</title>
 
@@ -18,7 +20,7 @@
 <body>
 
 <div class="container mt-4">
-    <table class="table table-hover">
+    <table class="table table-hover" id="t-productos">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Producto</th>
@@ -30,23 +32,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="producto:${productos}">
-            <td th:text="${producto.nombre}"></td>
-            <td th:text="${producto.stock}"></td>
-            <td th:text="${producto.precio}"></td>
-            <td th:text="${producto.fechaAlta}"></td>
-            <td>
-                <img th:src="@{'data:'+imagen.type+';base64,'+imagen.base64String+''+${producto.imagen}}">
-            </td>
-            <td>
-                <a th:href="@{/productos/editar/{id}(id=${producto.id})}" class="btn btn-info"><i class="material-icons" style="color:white">edit</i></a>
-                <a th:href="@{/productos/eliminar/{id}(id=${producto.id})}" class="btn btn-danger"><i class="material-icons" style="color:white">delete</i></a>
-            </td>
-        </tr>
         </tbody>
     </table>
     <div class="container" style="width:100%;text-align: right">
-        <a th:href="@{/productos/page/nuevo-producto}" class="btn btn-outline-secondary">Nuevo producto</a>
+        <a class="btn btn-outline-secondary" href="/productos/page/nuevo-producto" role="button">Nuevo producto</a>
     </div>
 </div>
 

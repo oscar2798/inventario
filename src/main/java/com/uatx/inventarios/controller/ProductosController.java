@@ -17,34 +17,34 @@ public class ProductosController {
     @Autowired
     private ProductoService productoService;
 
-    // Nuevo-producto
-    @GetMapping("/page/nuevo-producto")
-    public String agregar(Model model){
-        model.addAttribute("producto",new ProductoDTO());
-        return  "nuevo-producto";
-    }
-
-   /* @GetMapping("/page/nuevo-producto" )
+   @GetMapping("/page/nuevo-producto" )
     public String altaProductos(){
         return "nuevo-producto";
-    }  */
+    }
 
-
-
-    // all
     @GetMapping("/page/productos")
-    public  String listar(Model model){
-        List<ProductoDTO>productos=productoService.consultarProductos();
-        model.addAttribute("productos", productos);
+    public String redirectConsultaProd() {
         return "consulta-producto";
-
     }
 
 
-    /*@GetMapping("/page/productos")
-    public String consultarProd(){
-        return "consulta-producto";
-    } */
+
+    // all productos
+    @GetMapping("/all")
+    @ResponseBody
+    public List<ProductoDTO> consultarProductos() {
+        return productoService.consultarProductos();
+    }
+
+
+    // all imagen
+    @GetMapping("/all/for-table")
+    @ResponseBody
+    public List<ProductoDTO> findAllWithImg() {
+        return productoService.findProdWithImage();
+    }
+
+
 
     @GetMapping("/find/by-name")
     @ResponseBody
@@ -69,20 +69,12 @@ public class ProductosController {
     }
 
     // Eliminar
+
     @GetMapping("/eliminar/{productoId}")
-    public String eliminar(@PathVariable Long productoId,Model model) {
-        productoService.eliminar(productoId);
-        return "redirect:/productos/page/productos";
-    }
-
-
-    /*@GetMapping("/all")
     @ResponseBody
-    public List<ProductoDTO> consultarProductos() {
-        return productoService.consultarProductos();
+    public String findByName(@PathVariable Long productoId) {
+        return productoService.eliminar(productoId);
     }
-
-   */
 
 
 
