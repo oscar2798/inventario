@@ -2,6 +2,8 @@ package com.uatx.inventarios.services.impl;
 
 import com.uatx.inventarios.dto.AltaInventarioDTO;
 import com.uatx.inventarios.dto.BajaInventarioDTO;
+import com.uatx.inventarios.model.AltaInventario;
+import com.uatx.inventarios.model.BajaInventario;
 import com.uatx.inventarios.repository.AltaInventarioRepository;
 import com.uatx.inventarios.repository.BajainventarioRepository;
 import com.uatx.inventarios.services.InventarioService;
@@ -27,22 +29,35 @@ public class InventarioServiceImpl implements InventarioService {
 
     @Override
     public Long storeAltaInventario(AltaInventarioDTO altaInventarioDTO){
-        return null;
+        AltaInventario altaInventario = modelMapper.map(altaInventarioDTO, AltaInventario.class);
+        altaInventario.setFecha(new Date());
+        altaInventario.setCantidad((Double) 0D);
+        altaInventario.getProducto();
+        altaInventarioRepository.save(altaInventario);
+        return altaInventario.getId();
     }
 
     @Override
     public Long storeBajaInventario(BajaInventarioDTO bajaInventarioDTO){
-        return null;
+
+        BajaInventario bajaInventario = modelMapper.map(bajaInventarioDTO, BajaInventario.class);
+        bajaInventario.setFecha(new Date());
+        bajaInventario.setCantidad((double) 0D);
+        bajaInventario.getProducto();
+        bajainventarioRepository.save(bajaInventario);
+        return bajaInventario.getId();
     }
 
     @Override
-    public List<AltaInventarioDTO> findAltasByProducto(Long productoId){
-        return null;
+    public List<AltaInventario> findAltasByProducto(Long productoId){
+        List<AltaInventario> altaInventarios = altaInventarioRepository.findAllById(Collections.singleton(productoId));
+        return altaInventarios;
     }
 
     @Override
-    public List<BajaInventarioDTO> findBajasByProducto(Long productoId){
-        return null;
+    public List<BajaInventario> findBajasByProducto(Long productoId){
+       List<BajaInventario> bajaInventarios = bajainventarioRepository.findAllById(Collections.singleton(productoId));
+       return bajaInventarios;
     }
 
 
