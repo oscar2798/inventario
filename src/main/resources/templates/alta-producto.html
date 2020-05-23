@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/libs/bootstrap-4.4.1/css/bootstrap.min.css">
+    <script src="/libs/jquery/jquery-3.4.1.min.js"></script>
+    <script src="/libs/popper/popper.min.js"></script>
+    <script src="/libs/bootstrap-4.4.1/js/bootstrap.bundle.in.js"></script>
+
+    <script src="/js/alta-producto.js"></script>
+    <title>Alta-Producto</title>
+
+
+</head>
+<body>
+
+<div class="jumbotron jumbotron">
+    <div class="container">
+        <h1 class="display-3">Altas de productos</h1>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${titulo}"></h5>
+        </div>
+        <div id="imagenPro"></div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="id_producto" th:text="${producto.id}"></li>
+            <li class="list-group-item" id="base64" th:text="${base64}"></li>
+            <li class="list-group-item" id="type" th:text="${type}"></li>
+            <li class="list-group-item active">
+                <tr>
+                    <td>Precio: </td>
+                    <td  th:text="${'$' + producto.precio}"></td>
+                </tr>
+            </li>
+
+
+            <li class="list-group-item">
+                <tr>
+                    <td>Fecha de registro: </td>
+                    <td  th:text="${producto.fechaAlta}"></td>
+                </tr>
+            </li>
+
+            <li class="list-group-item">
+                <tr>
+                    <td>Stock Actual: </td>
+                    <td  th:text="${producto.stock + ' piezas'}"></td>
+                </tr>
+            </li>
+
+            <div class="input-group mb-3 list-group-item">
+                <form>
+                    <input id="piezas" type="number" class="form-control" placeholder="Ingresar:" aria-label="Piezas a ingresar:" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button id="btn-actualizar" class="btn btn-success btn-block" type="button">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+
+        </ul>
+        <div class="card-header list-group-item" th:text="${info}"></div>
+
+        <div class="card-body">
+            <button id="btn-info" class="btn btn-primary btn-block" type="button">Consultar</button>
+
+        </div>
+    </div>
+    <button class="btn btn-outline-dark align-content-lg-center" onclick="window.location='/productos/page/productos'">Ver Productos</button>
+
+</div>
+
+</body>
+</html>

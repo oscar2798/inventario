@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "BajaInventario")
+@Table(name = "baja_inventario")
 @SequenceGenerator(name = "baja_seq")
 public class BajaInventario {
     @Id
@@ -17,6 +17,7 @@ public class BajaInventario {
     @Column(name = "cantidad")
     private Double cantidad;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto")
     private Producto producto;
 

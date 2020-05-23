@@ -15,5 +15,9 @@ import java.util.List;
         @Query("SELECT p FROM Producto p JOIN FETCH p.imagen")
         List<Producto> findProductosFetchImagen();
 
+        @Query("SELECT p FROM Producto p JOIN FETCH p.imagen where p.id = :productoId")
+        Producto findProductoByIdFetch(Long productoId);
+
+
 }
 

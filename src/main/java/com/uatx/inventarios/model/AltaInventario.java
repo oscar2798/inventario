@@ -1,12 +1,15 @@
 package com.uatx.inventarios.model;
 
+import com.uatx.inventarios.dto.AltaInventarioDTO;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "AltaInventario")
+@Table(name = "alta_inventario")
 @SequenceGenerator(name = "alta_seq")
-public class AltaInventario{
+public class AltaInventario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "alta_seq")
     private Long id;
@@ -17,6 +20,7 @@ public class AltaInventario{
     @Column(name = "cantidad")
     private Double cantidad;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto")
     private Producto producto;
 

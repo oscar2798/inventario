@@ -20,4 +20,7 @@ public interface ProductoService {
 
     List<ProductoDTO> findProdWithImage();
 
+    ProductoDTO findByIdWithProducto(Long productoId);
+
+
 }

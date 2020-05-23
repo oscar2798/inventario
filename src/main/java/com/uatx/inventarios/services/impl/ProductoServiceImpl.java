@@ -38,10 +38,10 @@ public class ProductoServiceImpl implements ProductoService {
         producto.setFechaAlta(new Date());
         Imagen imagen = modelMapper.map(productoDTO.getImagen(),Imagen.class);
         imagenRepository.save(imagen);
-        if (imagen.getDataBase64().length() > 100){
+        /*if (imagen.getDataBase64().length() > 100){
             throw  new BusinessException("No es posible guardar una imagen grande");
 
-        }
+        }*/
         producto.setImagen(imagen);
 
         productoRepository.save(producto);
@@ -95,6 +95,12 @@ public class ProductoServiceImpl implements ProductoService {
         return produtosDTO;
     }
 
+    @Override
+    public ProductoDTO findByIdWithProducto(Long productoId) {
+        Producto producto = productoRepository.findProductoByIdFetch(productoId);
+        return trasnformToDTO(producto);
+
+    }
 
     /**
      * Busca todos los productos que en el nombre contengar el valor del parametro nombre
@@ -123,6 +129,11 @@ public class ProductoServiceImpl implements ProductoService {
             productoDTOS.add(productoDTO);
         }
         return productoDTOS;
+    }
+
+    private ProductoDTO trasnformToDTO(Producto producto) {
+        ProductoDTO productoDTO = modelMapper.map(producto, ProductoDTO.class);
+        return productoDTO;
     }
 
 }
